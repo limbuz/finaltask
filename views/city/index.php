@@ -18,10 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $session = Yii::$app->session;
     $session->timeout = 2* 3600;?>
 
-    <?php $ip = $_SERVER['REMOTE_ADDR'];
+    <?php $ip = Yii::$app->request->userIP;
     $request = file_get_contents('http://ipwho.is/' . $ip . '?lang=ru');
     $request = json_decode($request, true);
-    $city = $request['city']; ?>
+    if ($request['success']) {
+        $city = $request['city'];
+    } else {
+        $city = false;
+    }
+    ?>
 
     <?php if ($city !== false): ?>
 

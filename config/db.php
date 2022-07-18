@@ -6,7 +6,6 @@ return [
     'username' => 'ixysjtwhcpcdxv',
     'password' => 'e355ac3561046b734c4f1808eb9354f0618c050d75dc57bd89e16139020e5c6c',
     'charset' => 'utf8',
-    'tablePrefix' => 'tbl_',
 
     // Schema cache options (for production environment)
     //'enableSchemaCache' => true,

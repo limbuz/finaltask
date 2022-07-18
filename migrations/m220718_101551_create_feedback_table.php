@@ -12,7 +12,7 @@ class m220718_101551_create_feedback_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%feedback}}', [
+        $this->createTable('tbl_feedback', [
             'id' => $this->primaryKey(),
             'id_city' => $this->integer(),
             'title' => $this->string(100),
@@ -23,8 +23,8 @@ class m220718_101551_create_feedback_table extends Migration
             'date_create' => $this->integer(),
         ]);
 
-        $this->addForeignKey('author', '{{%feedback}}', 'id_author', '{{%user}}', 'id');
-        $this->addForeignKey('city', '{{%feedback}}', 'id_city', '{{%city}}', 'id');
+        $this->addForeignKey('author', 'tbl_feedback', 'id_author', 'tbl_user', 'id');
+        $this->addForeignKey('city', 'tbl_feedback', 'id_city', 'tbl_city', 'id');
     }
 
     /**
@@ -32,8 +32,8 @@ class m220718_101551_create_feedback_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey('id_author', '{{%feedback}}');
-        $this->dropForeignKey('id_city', '{{%feedback}}');
-        $this->dropTable('{{%feedback}}');
+        $this->dropForeignKey('id_author', 'tbl_feedback');
+        $this->dropForeignKey('id_city', 'tbl_feedback');
+        $this->dropTable('tbl_feedback');
     }
 }

@@ -12,7 +12,7 @@ class m220711_082120_create_user_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%user}}', [
+        $this->createTable('c', [
             'id' => $this->primaryKey(),
             'fio' => $this->string(255),
             'email' => $this->string(100),
@@ -29,6 +29,6 @@ class m220711_082120_create_user_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%user}}');
+        $this->dropTable('tbl_city');
     }
 }

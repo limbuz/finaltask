@@ -12,7 +12,7 @@ class m220711_081303_create_city_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%city}}', [
+        $this->createTable('tbl_city', [
             'id' => $this->primaryKey(),
             'name' => $this->string(45),
             'date_create' => $this->integer(),
@@ -24,6 +24,6 @@ class m220711_081303_create_city_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%city}}');
+        $this->dropTable('tbl_city');
     }
 }
