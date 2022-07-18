@@ -51,16 +51,21 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'city/index',
+                'feedback/<city:\w+>' => 'feedback/index',
+                'create' => 'feedback/create',
+                'feedback/update/<id:\d+>' => 'feedback/update',
+                'feedback/delete/<id:\d+>' => 'feedback/delete',
+                'feedback/user/<id:\d+>' => 'feedback/user',
             ],
         ],
-        */
     ],
     'params' => $params,
+    'defaultRoute' => 'city/index',
 ];
 
 /*
