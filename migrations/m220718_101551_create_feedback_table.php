@@ -23,8 +23,8 @@ class m220718_101551_create_feedback_table extends Migration
             'date_create' => $this->integer(),
         ]);
 
-        $this->addForeignKey('id_author', '{{%feedback}}', 'id_author', '{{%user}}', 'id');
-        $this->addForeignKey('id_city', '{{%feedback}}', 'id_city', '{{%city}}', 'id');
+        $this->addForeignKey('author', '{{%feedback}}', 'id_author', '{{%user}}', 'id');
+        $this->addForeignKey('city', '{{%feedback}}', 'id_city', '{{%city}}', 'id');
     }
 
     /**
