@@ -24,11 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
     if ($request['success']) {
         $city = $request['city'];
     } else {
-        $city = false;
+        $city = null;
     }
     ?>
 
-    <?php if ($city !== false): ?>
+    <?php if ($city !== null): ?>
 
         <?php Modal::begin([
                 'options' => [
@@ -58,6 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
 
     <h1><?= Html::encode($this->title) ?></h1>
+
+    <?php if (City::find()->count() === 0) {
+        echo Html::a('Написать отзыв', ['feedback/create'], ['class' => 'btn btn-success']);
+    } ?>
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
