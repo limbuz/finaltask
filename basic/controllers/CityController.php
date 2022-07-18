@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use app\models\City;
-use app\models\CitySearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -38,7 +37,6 @@ class CityController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CitySearch();
         $dataProvider = new ActiveDataProvider([
             'query' => City::find(),
             'pagination' => [
@@ -52,7 +50,6 @@ class CityController extends Controller
         ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

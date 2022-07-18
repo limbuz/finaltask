@@ -8,7 +8,6 @@ use yii\grid\ActionColumn;
 use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\CitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Города';
@@ -19,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $session = Yii::$app->session;
     $session->timeout = 2* 3600;?>
 
-    <?php $ip = '78.31.5.226'; //$_SERVER['REMOTE_ADDR'] not fot localhost
+    <?php $ip = $_SERVER['REMOTE_ADDR'];
     $request = file_get_contents('http://ipwho.is/' . $ip . '?lang=ru');
     $request = json_decode($request, true);
     $city = $request['city']; ?>
@@ -59,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => function ($model) {
-            return Html::a(Html::encode($model->name), ['feedback/index', 'city' => $model->name]);
+            return '<h4>' . Html::a(Html::encode($model->name), ['feedback/index', 'city' => $model->name]) . '</h4>';
         },
     ]) ?>
 

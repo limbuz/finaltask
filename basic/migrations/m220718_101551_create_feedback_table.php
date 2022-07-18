@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%feedback}}`.
  */
-class m220711_081538_create_feedback_table extends Migration
+class m220718_101551_create_feedback_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -32,6 +32,8 @@ class m220711_081538_create_feedback_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('id_author', '{{%feedback}}');
+        $this->dropForeignKey('id_city', '{{%feedback}}');
         $this->dropTable('{{%feedback}}');
     }
 }

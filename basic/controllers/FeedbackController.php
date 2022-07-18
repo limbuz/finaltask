@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use app\models\City;
 use app\models\Feedback;
-use app\models\FeedbackSearch;
 use app\models\User;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -47,7 +46,8 @@ class FeedbackController extends Controller
 
         if ($city === null) {
             return $this->redirect(['city/index']);
-        } else {
+        }
+        if (City::findOne(['name' => $city]) !== null) {
             $dataProvider = new ActiveDataProvider([
                 'query' => City::findOne(['name' => $city])->getFeedbacks(),
                 'pagination' => [
@@ -55,6 +55,9 @@ class FeedbackController extends Controller
                 ],
             ]);
             $session->set('city', $city);
+        } else {
+            Yii::$app->session->setFlash('error', 'Такого города нет в базе данных');
+            return $this->redirect(['city/index']);
         }
 
         return $this->render('index', [
@@ -153,7 +156,7 @@ class FeedbackController extends Controller
                 $request = file_get_contents('https://nominatim.openstreetmap.org/search?city=' . $city . '&format=json', false, $context);
                 $request = json_decode($request, true);
 
-                for ($i = 0; $i < 2; $i++) {
+                for ($i = 0; $i < 5; $i++) {
                     $name = preg_split('/[\s,]+/', $request[$i]['display_name']);
 
                     if ($city === $name[0]) {

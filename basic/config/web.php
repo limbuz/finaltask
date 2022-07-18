@@ -31,19 +31,15 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
-
-            // For production
-            /*
+            'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.yandex.ru',
-                'username' => 'mail@yandex.ru',
-                'password' => 'password',
+                'username' => 'xlimbuz@yandex.ru',
+                'password' => 'UniversalKey2708',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
-            */
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

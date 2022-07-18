@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\FeedbackSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $model app\models\Feedback */
 
