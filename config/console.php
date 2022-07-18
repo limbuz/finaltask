@@ -30,7 +30,7 @@ $config = [
     'params' => $params,
     /*
     'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
+        'fixture' => [
             'class' => 'yii\faker\FixtureController',
         ],
     ],
