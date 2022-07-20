@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (City::find()->count() === 0) {
+    <?php if (City::find()->count() === 0 && !Yii::$app->user->isGuest) {
         echo Html::a('Написать отзыв', ['feedback/create'], ['class' => 'btn btn-success']);
     } ?>
 
