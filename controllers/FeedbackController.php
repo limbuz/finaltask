@@ -57,6 +57,7 @@ class FeedbackController extends Controller
             $session->set('city', $city);
         } else {
             Yii::$app->session->setFlash('error', 'Такого города нет в базе данных');
+            $session->set('city', $city);
             return $this->redirect(['city/index']);
         }
 
