@@ -18,14 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $session = Yii::$app->session;
     $session->timeout = 2* 3600;?>
 
-    if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-    return trim(end($ips));
-    }
-    else {
-    return $_SERVER['REMOTE_ADDR'];
-    }
-
     <?php
 
     if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
