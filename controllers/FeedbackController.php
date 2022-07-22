@@ -153,10 +153,10 @@ class FeedbackController extends Controller
                 $USERAGENT = $_SERVER['HTTP_USER_AGENT'];
                 $opts = array('http'=>array('header'=>"User-Agent: $USERAGENT\r\n"));
                 $context = stream_context_create($opts);
-                $request = file_get_contents('https://nominatim.openstreetmap.org/search?city=' . $city . '&format=json', false, $context);
+                $request = file_get_contents('https://nominatim.openstreetmap.org/search?city='. $city .'&format=json', false, $context);
                 $request = json_decode($request, true);
 
-                for ($i = 0; $i < 5; $i++) {
+                for ($i = 0; $i < count($request); $i++) {
                     $name = preg_split('/[\s,]+/', $request[$i]['display_name']);
 
                     if ($city === $name[0]) {
@@ -164,6 +164,7 @@ class FeedbackController extends Controller
                         $instance->name = $city;
                         $instance->date_create = time();
                         $instance->save(false);
+                        return;
                     }
                 }
             }

@@ -18,7 +18,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $session = Yii::$app->session;
     $session->timeout = 2* 3600;?>
 
-    <?php $ip = Yii::$app->request->userIP;
+    if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+    return trim(end($ips));
+    }
+    else {
+    return $_SERVER['REMOTE_ADDR'];
+    }
+
+    <?php
+
+    if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        $ip = trim(end($ips));
+    }
+    else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+
     $request = file_get_contents('http://ipwho.is/' . $ip . '?lang=ru');
     $request = json_decode($request, true);
     if ($request['success']) {
@@ -59,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (City::find()->count() === 0 && !Yii::$app->user->isGuest) {
+    <?php if (!Yii::$app->user->isGuest) {
         echo Html::a('Написать отзыв', ['feedback/create'], ['class' => 'btn btn-success']);
     } ?>
 
